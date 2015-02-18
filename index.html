@@ -11,13 +11,25 @@
         h2 {
             color: #2D7FC7;
         }
+        h3 {
+            display: inline;
+        }
+        ul {
+            margin: 0px;
+            padding: 5px;
+        }
+        ul li {
+            padding: 5px;
+        }
         TD {
             font-family: verdana, arial;
             color: white;
             font-size: 8pt;
 
         }
-
+        #result {
+            color: #D00904;
+        }
         .news {
             font-family: arial;
         }
@@ -59,8 +71,7 @@
                 </tr>
 
                 <tr>
-                    <td valign="top" width="241"><img src="images/news.jpg" border="0" width="241" height="43"
-                                                      alt=""><br>
+                    <td valign="top" width="241">
                         <table border="0" cellpadding="0" cellspacing="0" width="241">
                             <tr>
                                 <td valign="top" width="241">
@@ -88,9 +99,7 @@
                                                                                            width="7" height="7" alt="">
                                                         </td>
                                                         <td>&nbsp;&nbsp;&nbsp;</td>
-                                                        <td valign="top" class="news"><b>12&nbsp;Feb&nbsp;2002&nbsp;::&nbsp;</b>
-                                                            News Title<br>Layers allow you to make changes to an
-                                                            image.<br><br></td>
+                                                        <td valign="top" class="news">Given the following parameters for input: length and array string return the winner.<br><br><br></td>
                                                         <td>&nbsp;&nbsp;&nbsp;</td>
                                                     </tr>
                                                     <tr>
@@ -99,11 +108,34 @@
                                                                                            width="7" height="7" alt="">
                                                         </td>
                                                         <td>&nbsp;&nbsp;&nbsp;</td>
-                                                        <td valign="top" class="news"><b>12&nbsp;Feb&nbsp;2002&nbsp;::&nbsp;</b>
-                                                            News Title<br>Layers allow you to make changes to an
-                                                            image.<br><br></td>
+                                                        <td valign="top" class="news">The <b>length</b> of a side of a tic tac toe board (e.g. can be 5, for a 5x5 game). The maximum size is 100x100.<br><br><br></td>
                                                         <td>&nbsp;&nbsp;&nbsp;</td>
                                                     </tr>
+                                                    <tr>
+                                                        <td>&nbsp;&nbsp;&nbsp;</td>
+                                                        <td align="left" valign="top"><img src="images/q.jpg" border="0"
+                                                                                           width="7" height="7" alt="">
+                                                        </td>
+                                                        <td>&nbsp;&nbsp;&nbsp;</td>
+                                                        <td valign="top" class="news">A 2 dimensional <b>array</b> converted to string representing the tic tac toe board. The spaces are filled with X, O or blanks.<br><br><br></td>
+                                                        <td>&nbsp;&nbsp;&nbsp;</td>
+                                                    </tr>
+                                                        <td>&nbsp;&nbsp;&nbsp;</td>
+                                                        <td align="left" valign="top"><img src="images/q.jpg" border="0"
+                                                                                           width="7" height="7" alt="">
+                                                        </td>
+                                                        <td>&nbsp;&nbsp;&nbsp;</td>
+                                                        <td valign="top" class="news">
+                                                            <b>Result</b> can be one of the following strings:
+                                                            <ul>
+                                                                <li>WinnerX: A winner X (there are N X's in a row, where N is the length of a side -- can be on a row, column or diagonal).</li>
+                                                                <li>WinnerO: A winner O.</li>
+                                                                <li>CatsGame: A cats game (no winner and no spaces left): None of the above.</li>
+                                                            </ul>
+                                                        </td>
+                                                        <td>&nbsp;&nbsp;&nbsp;</td>
+                                                    </tr>
+
                                                 </table>
                                             </td>
                                             <td valign="top" align="left" background="images/l_r.jpg" width="24"></td>
@@ -118,8 +150,7 @@
                             </tr>
                         </table>
                     </td>
-                    <td width="539" valign="top"><img src="images/text.jpg" border="0" width="539" height="43"
-                                                      alt=""><br>
+                    <td width="539" valign="top">
                         <table border="0" cellpadding="0" cellspacing="0" width="539">
                             <tr>
                                 <td valign="top" width="539">
@@ -135,20 +166,23 @@
                                             <td valign="top" width="475" bgcolor="#9D9EA3">
                                                 <table border="0" cellpadding="0" cellspacing="0" width="475">
                                                     <tr>
-                                                        <td valign="top"><h2>Input<h2></td>
+                                                        <td><h1>NxN Tic Tac Toe board analyzer</h1></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td valign="top"><h2>Input</h2></td>
                                                     </tr>
                                                     <tr>
                                                         <td><br></td>
                                                     </tr>
                                                     <tr>
                                                         <td valign="top">
-                                                            <form name="ttt-user-input" action="" method="post">
-                                                                <label><h3>Length</h3></label>
+                                                            <form name="ttt-user-input">
+                                                                <label><h3>Length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3></label>
                                                                 <input name="size" type="text" maxlength="3">
                                                                 <p class="notif">* Max length is 100</p>
 
                                                                 <label><h3>Board String</h3></label>
-                                                                <input name="board" type="text" maxlength="9">
+                                                                <input name="board" type="text" maxlength="100">
                                                                 <p class="notif">* Example: 'xxoooxxxo' </p>
 
                                                                 <button>Submit</button>
@@ -170,7 +204,7 @@
                                                     <tr>
                                                         <td>
                                                             <h2>Result</h2>
-                                                            <h3>And the Winner is... </h3> <span> Goes here...</span>
+                                                            <h3>And the Winner is... </h3> <span id="result"> Goes here...</span>
                                                         </td>
                                                     </tr>
                                                 </table>
