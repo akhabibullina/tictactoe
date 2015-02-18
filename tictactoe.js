@@ -1,9 +1,4 @@
-// todo: GUI
-
 'use strict';
-
-// Initial data
-var length = 3;
 
 /**
  * Given the parameters return the winner of the tictactoe game.
@@ -18,39 +13,16 @@ var length = 3;
  */
 function findWinner(length, boardString) {
 
-  var boardArray1d = boardString.match(/.{1,3}/g);
-  var boardArray2d = new Array(length);
-  var hBoardLine = new Array(length);
-
   var fillEnum = {x: 'x', o: 'o', space: ' '};
   var winnerEnum = {'x': 'WinnerX', 'o': 'WinnerO', 'c': 'CatsGame'};
   var hasSpace = false;
 
+  var boardArray1d = boardString.match(/.{1,3}/g);
+  var boardArray2d = populateArray(boardArray1d);
 
-  /**
-   *
-   * @param boardArray1d 1-dimensional array to be converted to 2-dimensional.
-   *    Example:
-   *
-   *  [
-   *   ["x","x","o"], // line 0
-   *   ["o","o","x"], // line 1
-   *   ["o"," ","o"]  // line 2
-   *  ]
-   *
-   * @returns {Array} 2-dimensional array converted from 1-dimensional.
-   */
-  function populateArray(boardArray1d) {
-    for (var hLineNum = 0; hLineNum < boardArray1d.length; hLineNum++) {
-      var hLineString = boardArray1d[hLineNum];
-      for (var i = 0; i < hLineString.length; i++) {
-        hBoardLine[i] = hLineString[i];
-      }
+  var winner = getWinner(boardArray2d);
 
-      boardArray2d[hLineNum] = hBoardLine.splice(0); // copy array
-    }
-    return boardArray2d;
-  }
+  return winner;
 
   /**
    * Horizontal search for the winner: for ex., the entire line is taken by X.
@@ -158,15 +130,45 @@ function findWinner(length, boardString) {
       || (hasSpace ? winnerEnum['c'] : null);
   }
 
-  var board = populateArray(boardArray1d);
-  var winner = getWinner(board);
-
-  console.log('winner: ' + winner);
-  return winner;
-
 };
 
+/**
+ * Public Functions
+ * @type {string}
+ */
+
+/**
+ *
+ * @param boardArray1d 1-dimensional array to be converted to 2-dimensional.
+ *    Example:
+ *
+ *  [
+ *   ["x","x","o"], // line 0
+ *   ["o","o","x"], // line 1
+ *   ["o"," ","o"]  // line 2
+ *  ]
+ *
+ * @returns {Array} 2-dimensional array converted from 1-dimensional.
+ */
+function populateArray(boardArray1d) {
+  var boardArray2d = new Array(length);
+  var hBoardLine   = new Array(length);
+
+  for (var hLineNum = 0; hLineNum < boardArray1d.length; hLineNum++) {
+    var hLineString = boardArray1d[hLineNum];
+    for (var i = 0; i < hLineString.length; i++) {
+      hBoardLine[i] = hLineString[i];
+    }
+
+    boardArray2d[hLineNum] = hBoardLine.splice(0); // copy array
+  }
+  return boardArray2d;
+}
+
 // Tests
+
+// Initial data
+var length = 3;
 
 var hInputO = 'xxoooxooo'; // WinnerO (h)
 var hInputX = 'xxxooxoxo'; // WinnerX (h)

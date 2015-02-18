@@ -13,8 +13,11 @@ $(document).ready(function() {
     var isValidLength = validateLength(length);
     var isValidBoardString = validateBoardString(boardString, length);
 
-    // Calculate result
     if (isValidLength && isValidBoardString) {
+      // Visualize
+      visualizeBoard(boardString, length);
+
+      // Calculate result
       var winner = findWinner(length, boardString);
       showResult(winner || 'undefined');
     } else {
@@ -30,6 +33,7 @@ $(document).ready(function() {
     return false;
   }
 
+  // todo: check that the string contains only O, X or space
   function validateBoardString(boardString, length) {
     if (boardString) {
       return boardString.length === Math.pow(length, 2);

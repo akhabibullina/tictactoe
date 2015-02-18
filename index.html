@@ -30,6 +30,12 @@
         #result {
             color: #D00904;
         }
+        #ttt-visualizer-box td {
+            color:black;
+            height: 25px;
+            width: 25px;
+            border: 1px dotted #2D7FC7;
+        }
         .news {
             font-family: arial;
         }
@@ -54,6 +60,7 @@
     </style>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+    <script src="visualizer.js"></script>
     <script src="tictactoe.js"></script>
     <script src="main.js"></script>
 
@@ -176,7 +183,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td valign="top">
-                                                            <form name="ttt-user-input">
+                                                            <form name="ttt-user-input" method="post">
                                                                 <label><h3>Length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3></label>
                                                                 <input name="size" type="text" maxlength="3">
                                                                 <p class="notif">* Max length is 100</p>
@@ -195,7 +202,9 @@
                                                     <tr>
                                                         <td>
                                                             <h2>Visualizer</h2>
-                                                            <div style="width: 100px; height: 100px; background-color: white; text-align: center"> TBD </div>
+                                                            <div id="ttt-visualizer-box" style="width: 100px; height: 100px; background-color: white; text-align: center">
+                                                                Board will be shown here
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     <tr>
