@@ -1,7 +1,11 @@
-function visualizeBoard(boardString, length) {
+'use strict';
 
-  var boardArray1d = boardString.match(/.{1,3}/g);
-  var boardArray2d = populateArray(boardArray1d);
+function visualizeBoard(length, boardString) {
+
+  var breakExpr = new RegExp('.{1,' + length + '}', 'g');
+
+  var boardArray1d = boardString.match(breakExpr);
+  var boardArray2d = populateArray(length, boardArray1d);
 
   // Draw table
   var table$ = $('<table/>').attr('id', 'ttt-visualizer-table');

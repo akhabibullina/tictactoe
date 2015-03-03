@@ -1,4 +1,4 @@
-$(document).ready(function() {
+document.addEventListener("DOMContentLoaded", function(event) {
   document.querySelector('form').addEventListener('submit', function(e) {
 
     // Cancel form events
@@ -16,7 +16,7 @@ $(document).ready(function() {
 
     if (isValidLength && isValidBoardString) {
       // Visualize
-      visualizeBoard(boardString, length);
+      visualizeBoard(length, boardString);
 
       // Calculate result
       var winner = findWinner(length, boardString);

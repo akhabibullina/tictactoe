@@ -16,9 +16,10 @@ function findWinner(length, boardString) {
   var fillEnum = {x: 'x', o: 'o', space: ' '};
   var winnerEnum = {'x': 'WinnerX', 'o': 'WinnerO', 'c': 'CatsGame'};
   var hasSpace = false;
+  var breakExpr = new RegExp('.{1,' + length + '}', 'g');
 
-  var boardArray1d = boardString.match(/.{1,3}/g);
-  var boardArray2d = populateArray(boardArray1d);
+  var boardArray1d = boardString.match(breakExpr);
+  var boardArray2d = populateArray(length, boardArray1d);
 
   var winner = getWinner(boardArray2d);
 
@@ -150,7 +151,7 @@ function findWinner(length, boardString) {
  *
  * @returns {Array} 2-dimensional array converted from 1-dimensional.
  */
-function populateArray(boardArray1d) {
+function populateArray(length, boardArray1d) {
   var boardArray2d = new Array(length);
   var hBoardLine   = new Array(length);
 
@@ -168,7 +169,7 @@ function populateArray(boardArray1d) {
 // Tests
 
 // Initial data
-var length = 3;
+var testLength = 3;
 
 var hInputO = 'xxoooxooo'; // WinnerO (h)
 var hInputX = 'xxxooxoxo'; // WinnerX (h)
@@ -182,14 +183,14 @@ var dInputX = 'oxxxx  xx'; // WinnerO (d)
 var inputNull = 'xxoooxxxo'; // null
 var inputDraw = '         '; // CatsGame
 
-console.log(findWinner(length, hInputO) === 'WinnerO');
-console.log(findWinner(length, hInputX) === 'WinnerX');
+console.log(findWinner(testLength, hInputO) === 'WinnerO');
+console.log(findWinner(testLength, hInputX) === 'WinnerX');
 
-console.log(findWinner(length, vInputO) === 'WinnerO');
-console.log(findWinner(length, vInputX) === 'WinnerX');
+console.log(findWinner(testLength, vInputO) === 'WinnerO');
+console.log(findWinner(testLength, vInputX) === 'WinnerX');
 
-console.log(findWinner(length, dInputO) === 'WinnerO');
-console.log(findWinner(length, dInputX) === 'WinnerX');
+console.log(findWinner(testLength, dInputO) === 'WinnerO');
+console.log(findWinner(testLength, dInputX) === 'WinnerX');
 
-console.log(findWinner(length, inputNull) === null);
-console.log(findWinner(length, inputDraw) === 'CatsGame');
+console.log(findWinner(testLength, inputNull) === null);
+console.log(findWinner(testLength, inputDraw) === 'CatsGame');
