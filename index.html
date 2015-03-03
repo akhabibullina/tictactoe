@@ -21,7 +21,7 @@
         ul li {
             padding: 5px;
         }
-        TD {
+        td {
             font-family: verdana, arial;
             color: white;
             font-size: 8pt;
@@ -29,9 +29,16 @@
         }
         #result {
             color: #D00904;
+            font-weight: bolder;
+        }
+        #ttt-visualizer-box {
+            height: 200px;
+            width: 200px;
         }
         #ttt-visualizer-box td {
             color:black;
+            text-align: center;
+            background-color: white;
             height: 25px;
             width: 25px;
             border: 1px dotted #2D7FC7;
@@ -201,21 +208,20 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
+                                                            <h2>Result</h2>
+                                                            <h3>And the Winner is... </h3> <span id="result"> Goes here...</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
                                                             <h2>Visualizer</h2>
-                                                            <div id="ttt-visualizer-box" style="width: 100px; height: 100px; background-color: white; text-align: center">
-                                                                Board will be shown here
-                                                            </div>
+                                                            <div id="ttt-visualizer-box"><img style="height:100%" src="images/Super Mario - Question Mark Block.jpg" alt=""></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td><br></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <h2>Result</h2>
-                                                            <h3>And the Winner is... </h3> <span id="result"> Goes here...</span>
-                                                        </td>
-                                                    </tr>
+
                                                 </table>
                                             </td>
                                             <td valign="top" align="left" background="images/r_r.jpg" width="39"></td>

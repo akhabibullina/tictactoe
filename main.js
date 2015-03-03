@@ -4,6 +4,7 @@ $(document).ready(function() {
     // Cancel form events
     e.preventDefault();
     e.stopPropagation();
+    resetResult();
 
     // Get form values
     var length = +($(this).find('input[name="size"]')[0].value); // convert to num
@@ -34,10 +35,15 @@ $(document).ready(function() {
   }
 
   // todo: check that the string contains only O, X or space
+  // todo: add special check if 1st or last board string el equals space
   function validateBoardString(boardString, length) {
     if (boardString) {
       return boardString.length === Math.pow(length, 2);
     }
+  }
+
+  function resetResult() {
+    document.querySelector('#result').innerHTML = 'TBD';
   }
 
   function showResult(winner) {
