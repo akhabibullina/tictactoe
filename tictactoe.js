@@ -109,19 +109,17 @@ function findWinner(length, boardString) {
     [3], [4], [5],    =>   [1], [4], [7],
     [6], [7], [6]          [2], [5], [8]
      */
-    var rotateBoard = function(board) {
-      var rotatedBoard = [];
-      for (var i = 0; i < board.length; i++) {
-        var arrParts =  board[i];
-        for (var j = 0; j < arrParts.length; j++) {
-          rotatedBoard[i] = board[j];
-        }
+    function TransMatrix(A) {
+      var m = A.length, n = A[0].length, AT = [];
+      for (var i = 0; i < n; i++)
+      { AT[i] = [];
+        for (var j = 0; j < m; j++) AT[i][j] = A[j][i];
       }
-      return rotatedBoard;
-    };
+      return AT;
+    }
 
     var hWinner = hSearch(board);
-    var vWinner = hSearch(rotateBoard(board));
+    var vWinner = hSearch(TransMatrix(board));
     var dWinner = dSearch(board) || dSearch(board.map(reverseBoard));
 
     // Define result
