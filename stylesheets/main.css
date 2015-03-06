@@ -1,0 +1,61 @@
+h1 {
+    color: black;
+}
+h2 {
+    color: #2D7FC7;
+}
+h3 {
+    display: inline;
+}
+ul {
+    margin: 0px;
+    padding: 5px;
+}
+ul li {
+    padding: 5px;
+}
+td {
+    font-family: verdana, arial;
+    color: white;
+    font-size: 8pt;
+
+}
+input {
+    border: 1px solid gray;
+}
+#result {
+    color: #D00904;
+    font-weight: bolder;
+}
+#ttt-visualizer-box {
+    height: 200px;
+    width: 200px;
+}
+#ttt-visualizer-box td {
+    color:black;
+    text-align: center;
+    background-color: white;
+    height: 25px;
+    width: 25px;
+    border: 1px dotted #2D7FC7;
+}
+.news {
+    font-family: arial;
+}
+
+.bot {
+    color: white;
+    text-decoration: none;
+    font-size: 7pt;
+    font-family: Verdana;
+    font-weight: bold;
+
+}
+
+.copy {
+    font-size: 7pt;
+}
+
+.notif {
+    color: green;
+}
