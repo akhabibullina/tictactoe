@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       var winner = findWinner(length, boardString);
       showResult(winner || 'undefined');
     } else {
-      showValidationErrorMessage();
+      showInvalidFields(isValidLength, isValidBoardString);
     }
 
   });
@@ -40,9 +40,25 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (boardString) {
       return boardString.length === Math.pow(length, 2);
     }
+    return false;
+  }
+
+  function showInvalidFields(isValidLength,isValidBoardString) {
+    if (!isValidLength) {
+      document.querySelector('input[name="size"]').style.border = '1px solid red';
+    };
+    if (!isValidBoardString) {
+      document.querySelector('input[name="board"]').style.border = ' 1px solid red';
+    };
+  }
+
+  function hideInvalidFields() {
+    document.querySelector('input[name="size"]').style.border = '1px solid gray';
+    document.querySelector('input[name="board"]').style.border = '1px solid gray';
   }
 
   function resetResult() {
+    hideInvalidFields();
     document.querySelector('#result').innerHTML = 'TBD';
   }
 
