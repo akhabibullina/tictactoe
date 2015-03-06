@@ -23,6 +23,9 @@ td {
 input {
     border: 1px solid gray;
 }
+#header {
+    border-radius: 5px;
+}
 #result {
     color: #D00904;
     font-weight: bolder;
@@ -49,7 +52,6 @@ input {
     font-size: 7pt;
     font-family: Verdana;
     font-weight: bold;
-
 }
 
 .copy {
