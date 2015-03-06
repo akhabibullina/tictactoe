@@ -25,6 +25,51 @@ function findWinner(length, boardString) {
 
   return winner;
 
+
+  /**
+   * Get the winner for the board given as a parameter.
+   *
+   * @param board 2d array which will be analysed.
+   * @returns {*} String containing the winner or catsgame if no winner defined; null otherwise.
+   */
+  function getWinner(board) {
+
+    if (board.length === 1) {
+      return winnerEnum[board[0]] || winnerEnum['c'];
+    }
+
+    /*
+     Example: [0, 1, 2] => [2, 1, 0]
+     */
+    var reverseBoard = function(hLine) {
+      return hLine.reverse();
+    };
+
+    /*
+     [0], [1], [2],         [0], [3], [6],
+     [3], [4], [5],    =>   [1], [4], [7],
+     [6], [7], [6]          [2], [5], [8]
+     */
+    function TransMatrix(A) {
+      var m = A.length, n = A[0].length, AT = [];
+      for (var i = 0; i < n; i++)
+      { AT[i] = [];
+        for (var j = 0; j < m; j++) AT[i][j] = A[j][i];
+      }
+      return AT;
+    }
+
+    var hWinner = hSearch(board);
+    var vWinner = hSearch(TransMatrix(board));
+    var dWinner = dSearch(board) || dSearch(board.map(reverseBoard));
+
+    // Define result
+    return hWinner
+      || vWinner
+      || dWinner
+      || (hasSpace ? winnerEnum['c'] : null);
+  }
+
   /**
    * Horizontal search for the winner: for ex., the entire line is taken by X.
    *
@@ -87,46 +132,6 @@ function findWinner(length, boardString) {
       }
 
     }
-  }
-
-  /**
-   * Get the winner for the board given as a parameter.
-   *
-   * @param board 2d array which will be analysed.
-   * @returns {*} String containing the winner or catsgame if no winner defined; null otherwise.
-   */
-  function getWinner(board) {
-
-    /*
-    Example: [0, 1, 2] => [2, 1, 0]
-     */
-    var reverseBoard = function(hLine) {
-      return hLine.reverse();
-    };
-
-    /*
-    [0], [1], [2],         [0], [3], [6],
-    [3], [4], [5],    =>   [1], [4], [7],
-    [6], [7], [6]          [2], [5], [8]
-     */
-    function TransMatrix(A) {
-      var m = A.length, n = A[0].length, AT = [];
-      for (var i = 0; i < n; i++)
-      { AT[i] = [];
-        for (var j = 0; j < m; j++) AT[i][j] = A[j][i];
-      }
-      return AT;
-    }
-
-    var hWinner = hSearch(board);
-    var vWinner = hSearch(TransMatrix(board));
-    var dWinner = dSearch(board) || dSearch(board.map(reverseBoard));
-
-    // Define result
-    return hWinner
-      || vWinner
-      || dWinner
-      || (hasSpace ? winnerEnum['c'] : null);
   }
 
 };
