@@ -65,8 +65,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
   function validateLength(length) {
+    function isNumber(n) {
+      return !isNaN(parseFloat(n)) && isFinite(n);
+    }
     if (length) {
-      return length >= 1 && length <= 100;
+      return isNumber(length) && length >= 1 && length <= 100;
     }
     return false;
   }
