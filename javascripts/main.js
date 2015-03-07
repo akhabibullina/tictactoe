@@ -1,4 +1,41 @@
 document.addEventListener("DOMContentLoaded", function(event) {
+
+  document.querySelector('#generate-board').addEventListener('click', function(e) {
+    // Cancel form events
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Get form values
+    var length = +(document.querySelector('input[name="size"]').value); // convert to num
+    var boardField = document.querySelector('input[name="board"]');
+
+    // Validate
+    var isValidLength = validateLength(length);
+
+    if (isValidLength) {
+      var newBoardString = generateNewBoard(length);
+      boardField.value = newBoardString;
+    } else {
+      showInvalidFields(isValidLength,'');
+    }
+
+    /*
+     Generate a string of 3 random characters
+     */
+    function generateNewBoard(length)
+    {
+      var text = "";
+      var possible = 'xo ';
+
+      for( var i=0; i < Math.pow(length, 2); i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+      return text;
+    }
+
+    return newBoardString;
+  });
+
   document.querySelector('form').addEventListener('submit', function(e) {
 
     // Cancel form events
