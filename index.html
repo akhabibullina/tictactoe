@@ -128,20 +128,17 @@
                                                         <td valign="top"><h2>Input</h2></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><br></td>
-                                                    </tr>
-                                                    <tr>
                                                         <td valign="top">
                                                             <form name="ttt-user-input" method="post">
                                                                 <label><h3>Length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3></label>
                                                                 <input name="size" type="text" maxlength="3">
-                                                                <p class="notif">* Max length is 100</p>
+                                                                <p class="notif">* Min value: 1; Max value: 100</p>
 
                                                                 <label><h3>Board String</h3></label>
                                                                 <input name="board" type="text" maxlength="100">
                                                                 <span> OR </span>
                                                                 <button id="generate-board">Generate New Board!</button>
-                                                                <p class="notif">* Example: xxoooxxxo </p>
+                                                                <p class="notif">* All lower case. Example: xxoooxxxo </p>
 
                                                                 <button>Submit</button>
                                                             </form>
@@ -162,7 +159,8 @@
                                                     <tr>
                                                         <td>
                                                             <h2>Visualizer</h2>
-                                                            <div id="ttt-visualizer-box"><img style="height:100%" src="images/Super Mario - Question Mark Block.jpg" alt=""></div>
+                                                            <p class="notif">* Only available for board size smaller than 10</p>
+                                                            <div id="ttt-visualizer-box"><img style="height:100%" src="images/Super Mario - Question Mark Block.jpg" /></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
