@@ -23,18 +23,23 @@ input {
     border: 1px solid gray;
 }
 form {
+    text-align: center;
     margin: 0;
+}
+form button {
+
 }
 #header {
     border-radius: 5px;
 }
 #result {
-    color: #D00904;
+    color: black;
     font-weight: bolder;
 }
 #ttt-visualizer-box {
     height: 210px;
     width: 210px;
+    margin: auto;
 }
 #ttt-visualizer-box td {
     color:black;
@@ -59,7 +64,15 @@ form {
 .copy {
     font-size: 7pt;
 }
-
+span.error, span.required {
+    color: #D00904;
+}
+span.error {
+    visibility: hidden;
+}
+input.error {
+    border: 1px solid red;
+}
 .notif {
     color: green;
 }

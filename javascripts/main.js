@@ -1,7 +1,5 @@
+'use strict';
 document.addEventListener("DOMContentLoaded", function(event) {
-
-  var minSize = 1;
-  var maxSize = 100;
 
   document.querySelector('#generate-board').addEventListener('click', function(e) {
     // Cancel form events
@@ -66,43 +64,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
   });
-
-  function validateLength(length) {
-    if (length) {
-      return isNumeric(length) && length >= minSize && length <= maxSize;
-    }
-    return false;
-  }
-
-  function validateBoardString(boardString, length) {
-    if (boardString) {
-      return hasAllowedCharsOnly(boardString) && (boardString.length === Math.pow(length, 2));
-    }
-    return false;
-  };
-
-  function isNumeric(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-  };
-
-  function hasAllowedCharsOnly(str) {
-    var allowedChars = ' xo';
-    return !str.match('[^' + allowedChars + ']');
-  };
-
-  function showInvalidFields(isValidLength,isValidBoardString) {
-    if (!isValidLength) {
-      document.querySelector('input[name="size"]').style.border = '1px solid red';
-    };
-    if (!isValidBoardString) {
-      document.querySelector('input[name="board"]').style.border = ' 1px solid red';
-    };
-  }
-
-  function hideInvalidFields() {
-    document.querySelector('input[name="size"]').style.border = '1px solid gray';
-    document.querySelector('input[name="board"]').style.border = '1px solid gray';
-  };
 
   function resetResult() {
     hideInvalidFields();

@@ -11,6 +11,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
     <script src="javascripts/visualizer.js"></script>
     <script src="javascripts/tictactoe.js"></script>
+    <script src="javascripts/validation.js"></script>
     <script src="javascripts/main.js"></script>
 
 </head>
@@ -130,17 +131,18 @@
                                                     <tr>
                                                         <td valign="top">
                                                             <form name="ttt-user-input" method="post">
-                                                                <label><h3>Length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3></label>
+                                                                <label><h3>Length&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3><span class="required">*</span></label>
                                                                 <input name="size" type="text" maxlength="3">
-                                                                <p class="notif">* Min value: 1; Max value: 100</p>
+                                                                <span  id="invalid-length" class="error">Invalid length</span>
+                                                                <p class="notif">Min value: 1; Max value: 100</p>
 
-                                                                <label><h3>Board String</h3></label>
+                                                                <label><h3>Board String</h3><span class="required">*</span></label>
                                                                 <input name="board" type="text" maxlength="100">
-                                                                <span>&nbsp;OR&nbsp; >> </span>
+                                                                <span id="invalid-board" class="error">Invalid Board</span>
+                                                                <p class="notif">All lower case. Example: xxoooxxxo </p>
                                                                 <a id="generate-board" href="#"> Generate New Board</a>
-                                                                <p class="notif">* All lower case. Example: xxoooxxxo </p>
 
-                                                                <button>Submit</button>
+                                                                <p><button>Submit</button></p>
                                                             </form>
                                                         </td>
                                                     </tr>
