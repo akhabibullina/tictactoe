@@ -49,10 +49,18 @@ form button {
     width: 20px;
     border: 1px dotted #2D7FC7;
 }
+#ttt-visualizer-box span {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -webkit-transition: opacity 0.5s ease-in-out;
+}
+#ttt-visualizer-box span.fade {
+    opacity: 1;
+}
 .news {
     font-family: arial;
 }
-
 .bot {
     color: white;
     text-decoration: none;
@@ -60,7 +68,6 @@ form button {
     font-family: Verdana;
     font-weight: bold;
 }
-
 .copy {
     font-size: 7pt;
 }

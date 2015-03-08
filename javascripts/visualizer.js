@@ -16,9 +16,13 @@ function visualizeBoard(length, boardString) {
       for (var colIndex = 0; colIndex < length; colIndex++) {
         // Cols
         var col$ = $('<td/>');
+        var span$ = $('<span/>');
         var cellValue = boardArray2d[rowIndex][colIndex];
 
-        col$.attr('class', (rowIndex + 1) + '_' + (colIndex + 1)).html(cellValue);
+        col$.attr('class', (rowIndex + 1) + '_' + (colIndex + 1));
+        span$.html(cellValue);
+
+        col$.append(span$);
         row$.append(col$);
       }
       table$.append(row$);
@@ -28,4 +32,11 @@ function visualizeBoard(length, boardString) {
     newBoard = '<img style="height:100%" src="images/Super Mario - Question Mark Block.jpg" />';
   }
   $("#ttt-visualizer-box").html(newBoard);
+
+  setTimeout(function() {
+    $(newBoard).find('span').each(function(index, el) {
+      el.className += 'fade';
+    });
+  }, 0);
+
 }
