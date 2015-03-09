@@ -117,3 +117,6 @@ button {
     -o-box-shadow: #5a9479 0 1px 2px inset;
     box-shadow: #5a9479 0 1px 2px inset;
 }
+#ttt-visualizer-table{
+    margin: 0 auto;
+}
