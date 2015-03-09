@@ -1,5 +1,17 @@
 'use strict';
 
+// todo: better generate random board mechanism for larger sizes
+// todo: if there are only o's or x's - is it a valid board?
+
+// http://stackoverflow.com/questions/10430279/javascript-object-extending
+Object.prototype.extend = function(obj) {
+  for (var i in obj) {
+    if (obj.hasOwnProperty(i)) {
+      this[i] = obj[i];
+    }
+  }
+};
+
 /**
  * Given the parameters return the winner of the tictactoe game.
  *
@@ -10,6 +22,7 @@
  * WinnerX:  A winner X (there are N X’s in a row, where N is the length of a side -- can be on a row, column or diagonal)
  * WinnerO:  A winner O
  * CatsGame: A cats game (no winner and no spaces left) None of the above
+ * null:     No result defined
  */
 function findWinner(length, boardString) {
 
@@ -21,10 +34,9 @@ function findWinner(length, boardString) {
   var boardArray1d = boardString.match(breakExpr);
   var boardArray2d = populateArray(length, boardArray1d);
 
-  var winner = getWinner(boardArray2d);
+  var result = getWinner(boardArray2d);
 
-  return winner;
-
+  return result;
 
   /**
    * Get the winner for the board given as a parameter.
@@ -33,9 +45,8 @@ function findWinner(length, boardString) {
    * @returns {*} String containing the winner or catsgame if no winner defined; null otherwise.
    */
   function getWinner(board) {
-
     if (board.length === 1) {
-      return winnerEnum[board[0]] || winnerEnum['c'];
+      return {'winner': winnerEnum[board[0]] || winnerEnum['c'] };
     }
 
     /*
@@ -45,29 +56,25 @@ function findWinner(length, boardString) {
       return hLine.reverse();
     };
 
-    /*
-     [0], [1], [2],         [0], [3], [6],
-     [3], [4], [5],    =>   [1], [4], [7],
-     [6], [7], [6]          [2], [5], [8]
-     */
-    function TransMatrix(A) {
-      var m = A.length, n = A[0].length, AT = [];
-      for (var i = 0; i < n; i++)
-      { AT[i] = [];
-        for (var j = 0; j < m; j++) AT[i][j] = A[j][i];
-      }
-      return AT;
-    }
-
     var hWinner = hSearch(board);
-    var vWinner = hSearch(TransMatrix(board));
-    var dWinner = dSearch(board) || dSearch(board.map(reverseBoard));
+    var vWinner = vSearch(board);
+    var dWinnerReverse = dSearch(board.map(reverseBoard));
+    var dWinner = dSearch(board) || dWinnerReverse;
+
+    if (hWinner) {
+      hWinner.extend({'type': 'h'});
+    } else if (vWinner) {
+      vWinner.extend({'type': 'v'});
+    } else if (dWinner) {
+      dWinner.extend({'type': 'd'});
+      dWinner.extend({'reversed': 'y'});
+    }
 
     // Define result
     return hWinner
       || vWinner
       || dWinner
-      || (hasSpace ? winnerEnum['c'] : null);
+      || (hasSpace ? {'winner': winnerEnum['c'], 'type': '', 'element': ''} : null);
   }
 
   /**
@@ -95,12 +102,30 @@ function findWinner(length, boardString) {
             continue top;
           }
 
-          if (++hLineLength === length) {
-            return winnerEnum[hPrev];
+          if (!(fillEnum.space === hPrev) && ++hLineLength === length) { // the end of the line
+            return {'winner': winnerEnum[hPrev], 'element': [i, j]};
           }
 
         }
       }
+  }
+
+  function vSearch(board) {
+    /*
+     [0], [1], [2],         [0], [3], [6],
+     [3], [4], [5],    =>   [1], [4], [7],
+     [6], [7], [6]          [2], [5], [8]
+     */
+    function TransMatrix(A) {
+      var m = A.length, n = A[0].length, AT = [];
+      for (var i = 0; i < n; i++)
+      { AT[i] = [];
+        for (var j = 0; j < m; j++) AT[i][j] = A[j][i];
+      }
+      return AT;
+    }
+
+    return hSearch(TransMatrix(board));
   }
 
   /**
@@ -127,8 +152,8 @@ function findWinner(length, boardString) {
         return;
       }
 
-      if (++dLineLength === length) {
-        return winnerEnum[dPrev];
+      if (!(fillEnum.space === dPrev) && ++dLineLength === length) {  // the end of the line
+        return {'winner': winnerEnum[dPrev], 'element': [i, i]};
       }
 
     }

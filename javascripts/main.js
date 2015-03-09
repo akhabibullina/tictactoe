@@ -23,8 +23,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     /*
      Generate a string of 3 random characters
      */
-    function generateNewBoard(length)
-    {
+    function generateNewBoard(length) {
       var text = "";
       var possible = 'xo ';
 
@@ -53,12 +52,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var isValidBoardString = validateBoardString(boardString, length);
 
     if (isValidLength && isValidBoardString) {
-      // Visualize
-      visualizeBoard(length, boardString);
-
       // Calculate result
-      var winner = findWinner(length, boardString);
-      showResult(winner || 'undefined');
+      var result = findWinner(length, boardString);
+      // Visualize
+      visualizeBoard(length, boardString, result);
+      // Show the winner
+      showResult(result['winner'] || 'We could not define the winner :)');
     } else {
       showInvalidFields(isValidLength, isValidBoardString);
     }
@@ -67,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   function resetResult() {
     hideInvalidFields();
-    document.querySelector('#result').innerHTML = 'TBD';
+    document.querySelector('#result').innerHTML = 'See result soon';
   };
 
   function showResult(winner) {

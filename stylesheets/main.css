@@ -83,7 +83,9 @@ input.error {
 .notif {
     color: green;
 }
-
+.bold {
+    font-weight: bold;
+}
 /** Buttons http://jaredhardy.com/sassy-buttons **/
 
 button {
